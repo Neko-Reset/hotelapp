@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Hotelapp</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+  </head>
+
+  <body>
+    <header>
+      <div class="header-left">
+        <a href="/"><img alt="サイトのロゴ画像" src=https://presite-potepancamp-rails-02.herokuapp.com/assets/logo.png></a>
+          <input>
+          <input>
+      </div>
+      <div class="header-right">
+        <div class="nav-item">
+          <a href="/login">ログイン</a>
+          <a href="/signup">登録する</a>
+        </div>
+      </div>
+    
+    </header>
+
+    <%= yield %>
+    <footer class="footer">
+      <p>© 2022 POTEPAN.INC.</p>
+    </footer>
+  </body>
+</html>
