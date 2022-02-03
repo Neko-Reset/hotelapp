@@ -3,11 +3,33 @@
     <div class="form-heading">ログイン</div>
     <div class="form users-form">
       <div class="form-body">
-        <p>メールアドレス</p>
-        <input>
-        <p>パスワード</p>
-        <input>
-        <input type="submit" value="ログイン">
+        <% if @error_message %>
+          <div class="form-error">
+            <%= @error_message %>
+          </div>
+        <% end %>
+        <%= form_with model: @user do |f| %>
+        <%= f.label :email ,"メールアドレス" %><br>
+        <%= f.text_field :email %><br>
+        <%= f.label :password ,"パスワード" %><br>
+        <%= f.text_field :password %><br>
+        <div>
+          <%= f.submit "ログインする" %>
+        </div>
+        <% end %>
+        <% 
+=begin
+%>
+        <%=form_tag("/login") do %>
+          <p>メールアドレス</p>
+          <input name="email" value="<%= @email%>">
+          <p>パスワード</p>
+          <input type="password" name="password" value="<%= @password %>">
+          <input type="submit" value="ログイン">
+        <% end %>
+        <%
+=end
+%>
       </div>
     </div>
   </div>

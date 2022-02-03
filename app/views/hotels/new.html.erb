@@ -1,0 +1,24 @@
+<div class="container hotels-new">
+  <div class="row">
+    <div class="col-6 offset-3">
+      <div class="c">
+        <h4 class="hotels-new-check-content">予約内容確認</h4>
+        <h5 class="price-icon"><%= @room.room_price %>円</h5>
+        <%= form_with model: @hotel do |f| %>
+          <div class="hotels-new-date-select">
+            <%= f.hidden_field :room_id,value: "#{params[:room_id]}"%>
+            <%#= f.text_field :user_id,value: "#{params[:id]}"%>
+            <%= f.label :開始日, class: "label" %><br>
+            <%= f.text_field :start_day, readonly: true %><br>
+            <%= f.label :終了日, class: "label" %><br>
+            <%= f.text_field :end_day, readonly: true %><br>
+            <%= f.label :人数, class: "label" %><br>
+            <%= params[:number]%><br>
+            <%= f.submit "登録" %>
+          <% end %>
+          <%= link_to "予約画面に戻る", :rooms ,id:"return_hotel" %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
