@@ -1,0 +1,32 @@
+<h3>登録済みルーム一覧</h3>
+    <table>
+      <thead>
+        <tr>
+          <th>ルーム画像</th>
+          <th>ルーム名</th>
+          <th>ルーム紹介</th>
+          <th>料金</th>
+          <th>作成日</th>
+          <th>消去</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @rooms.each do |room| %>
+          <tr>
+            <td>
+              <% if room.image.attached? %>
+                <%= image_tag room.image, class: "image" %>
+              <% end %>
+            </td>
+            <td>
+              <%= room.room_name %><br>
+              <%= link_to "確認", room %>
+            </td>
+            <td><%= room.room_memo %></td>
+            <td><%= room.room_price %></td>
+            <td><%= room.updated_at.to_s(:datetime_jp) %></td>
+            <td><%= link_to "削除", room, method: :delete, data: { confirm: "本当に削除しますか？" } %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>

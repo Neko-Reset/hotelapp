@@ -5,27 +5,59 @@
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
-
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
-
   <body>
     <header>
       <div class="header-left">
         <a href="/"><img alt="サイトのロゴ画像" src=https://presite-potepancamp-rails-02.herokuapp.com/assets/logo.png></a>
-          <input>
-          <input>
+          <div class="search">
+            <div class="area_search">
+              <%= form_with url: rooms_search_path, method: :get, local: true do |s| %>
+                <%= s.text_field :search,placeholder: "area..." %>
+                <%= s.submit :search, class: "btn"  %>
+              <% end %>
+            </div>
+            <div class="keyword">
+              <%= form_with url: rooms_search_path, method: :get, local: true do |s| %>
+                <%= s.text_field :search,placeholder: "keyword..." %>
+                <%= s.submit :search, class: "btn" %>
+              <% end %>
+            </div>
+        </div>
+      </div>
       </div>
       <div class="header-right">
         <div class="nav-item">
-          <a href="/login">ログイン</a>
-          <a href="/signup">登録する</a>
+            <% if @current_user %>
+              <%= link_to(@current_user.name, "/users/#{@current_user.id}") %>
+              <nav>
+                <input type="checkbox" id="check">
+                <span class="span1"></span>
+                <span class="span2"></span>
+                <span class="span3"></span>
+                <label class="lable_ham" for="check"></label>
+                <ul class="header-nav-menu" style="display: block;">
+                  <li><%= link_to("ルーム登録" , new_room_path)%></a></li>
+                  <li><%= link_to("予約済みルーム一覧" , hotels_path)%></a></li>
+                  <li><%= link_to("登録済みルーム一覧" , rooms_path)%></a></li>
+                  <li><%= link_to("ログアウト", "/logout", {method: "post"})%></li>
+                  <li><%= link_to("search" , rooms_search_path)%></li>
+                </ul>
+              </nav>
+            <% else %>
+              <a href="/login">ログイン</a>
+              <a href="/users/new">登録する</a>
+          <% end %>
         </div>
       </div>
-    
     </header>
-
+      <% if flash[:notice] %>
+        <div class="flash">
+          <%= flash[:notice] %>
+        </div>
+    <% end %>
     <%= yield %>
     <footer class="footer">
       <p>© 2022 POTEPAN.INC.</p>

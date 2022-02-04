@@ -1,4 +1,5 @@
 class User < ApplicationRecord
-  validates :name,{presence:true}
-  validates :email,{presence:true , uniqueness:true}
+  has_one_attached :image
+  has_many :rooms
+  has_many :hotels
 end

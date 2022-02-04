@@ -1,10 +1,17 @@
 <div class="main user-show">
   <div class="container">
     <div class="user">
+      <% if @user.image.attached? %>
+        <%= image_tag @user.image, class: "image" %>
+      <% end %>
       <h2><%= @user.name %></h2>
       <p><%= @user.email %></p>
-      <%= link_to("編集" , "/users/#{@user.id}/edit")%>
-      <p><%= link_to("ユーザー一覧に戻る" , "/users/index")%></p>
+      <p><%= @user.password%></p>
+      <%if @user.id == @current_user.id %>
+        <%= link_to("編集", "/users/#{@user.id}/edit") %>
+      <% end %>
+      <%= link_to("削除", "/users/#{@user.id}/destroy", {method:"user"})%>
+      <p><%= link_to("ユーザー一覧に戻る" , users_path)%></p>
     </div>
   </div>
 </div>
