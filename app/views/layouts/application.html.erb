@@ -8,15 +8,25 @@
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
-
   <body>
     <header>
       <div class="header-left">
         <a href="/"><img alt="サイトのロゴ画像" src=https://presite-potepancamp-rails-02.herokuapp.com/assets/logo.png></a>
-        <%#= form_with(url: rooms_search_path, local: true) do |form| %>
-          <%#= form.text_field :keyword  %>
-          <%#= form.submit "検索" %>
-        <% #end %>
+          <div class="search">
+            <div class="area_search">
+              <%= form_with url: rooms_search_path, method: :get, local: true do |s| %>
+                <%= s.text_field :search,placeholder: "area..." %>
+                <%= s.submit :search, class: "btn"  %>
+              <% end %>
+            </div>
+            <div class="keyword">
+              <%= form_with url: rooms_search_path, method: :get, local: true do |s| %>
+                <%= s.text_field :search,placeholder: "keyword..." %>
+                <%= s.submit :search, class: "btn" %>
+              <% end %>
+            </div>
+        </div>
+      </div>
       </div>
       <div class="header-right">
         <div class="nav-item">

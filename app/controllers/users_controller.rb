@@ -1,7 +1,7 @@
 class UsersController < ApplicationController
+  # ログイン時、制限
   # before_action :forbid_login_user, {only: [:new, :create, :login, :login_form]}
   def index
-    binding.pry
     @users = User.all
   end
 

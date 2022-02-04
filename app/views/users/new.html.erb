@@ -4,10 +4,10 @@
     <div class="form users-form">
       <div class="form-body">
       <% @user.errors.full_messages.each do |message| %>
-          <div class="form-error">
-            <%= message %>
-          </div>
-        <% end %>
+        <div class="form-error">
+          <%= message %>
+        </div>
+      <% end %>
         <% 
 =begin
         <%= form_with model: @room do |f| %>

@@ -4,9 +4,7 @@ class RoomsController < ApplicationController
   end
 
   def search
-    keyword = params[:keyword]
-    @rooms = User.where('name LIKE?', "%#{keyword}%")
-    @rooms = Room.all
+    @rooms = Room.search(params[:search])
   end
 
   def new
